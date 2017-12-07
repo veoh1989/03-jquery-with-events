@@ -59,7 +59,19 @@ articleView.handleCategoryFilter = function() {
   // When an option with a value is selected, hide all the articles, then reveal the matches.
   // When the blank (default) option is selected, show all the articles, except for the template.
   // Be sure to reset the #author-filter while you are at it!
+  $('#category-filter').on('change', function() {
+    if ($(this).val()) {
+      $('article').hide();
+      $(`article[data-category="${$(this).val()}"]`).show();
+    } else {
+      $('')
+      $(`article[data-category="${$(this).val()}"]`).hide();
+      $(`article`).show();
+      // TODO: If the <select> menu was changed to an option that is blank, we should first show all the articles, except the one article we are using as a template.
 
+    }
+    $('#author-filter').val('');
+  });
 };
 
 articleView.handleMainNav = function() {
